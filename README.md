@@ -1,3 +1,16 @@
+# How to build and publish containers
+```
+cd /Users/kozlova/program/repos/sandbox/otel-with-apache-pulsar
+
+export IMAGE_NAME=ghcr.io/alex-y-kozlov-sandbox/otel-with-apache-pulsar/analytics-layer:latest
+docker build -t $IMAGE_NAME -f ./analytics-layer/Dockerfile ./analytics-layer/
+docker push $IMAGE_NAME
+
+export IMAGE_NAME=ghcr.io/alex-y-kozlov-sandbox/otel-with-apache-pulsar/brand-estimator:latest
+docker build -t $IMAGE_NAME -f ./brand-estimator/Dockerfile  ./brand-estimator/
+docker push $IMAGE_NAME
+```
+
 # OpenTelemetry with Apache Pulsar
 
 This repository contains an example of application that offers users a way to estimate the cost of certain car brands. When a brand is provided the application queries the estimative in a [Redis](https://redis.io) database. Along with the operation to estimate, the application also produces and consumes events to and from [Apache Pulsar](https://pulsar.apache.org). This whole transaction is captured using [OpenTelemetry](https://opentelemetry.io) and sent to [Elastic APM](https://www.elastic.co/apm).
